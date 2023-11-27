@@ -1,0 +1,1201 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>LST Days - Seminar</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/telecom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="cover" data-background="figures/background-blur.jpg"  data-state="no-title-footer no-progressbar has-dark-background">
+
+					<h2 id='coverh2'>Overview of Speech Related Topics at Télécom</h2>
+					<h1  id='title_seminar'> LST Days - Seminar </h1>
+					<p id='coverauthors'>
+						Mathieu FONTAINE<br />
+						mathieu.fontaine@telecom-paris.fr
+						
+					</p>
+					<p id="date">
+					November, 27th 2023
+					<br><a href="https://matfontaine.github.io/LSTDAYS23">matfontaine.github.io/LSTDAYS23</a>
+					<br><center><img src="figures/images/QR_presentation.png" width="20%">
+					<br>PRESENTATION QR-CODE
+					</center>
+					</p>
+					
+					<p>
+					<img src="css/theme/img/logo-Telecom.svg" id="telecom" class="logo" alt="">
+					<aside class="notes">
+						<ul><li>Talk about time anomaly detection using GAN</li>
+									<li>The main goal is to provide an unsupervised TAD that works for various dataset</li>
+									<li>Fitting an implicit distribution may be a wise choice ? Let see ...</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Brief Introduction</h1>
+					<img src="figures/images/chrono.png", width="90%" style="margin-top:0.5em;">
+					<ul style="margin-top:1.0em;">
+						<li>Born in Le Mans (Rillettes, MageMalte represent !)</li>
+						<li>Currently: Assistant Professor at Télécom Paris in ADASP Group</li>
+						<li>Guest Researcher at RIKEN AIP @ Kyoto University</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Audio Data Analysis and Signal Processing (ADASP) Group</h1>
+					<img src="figures/images/ADASP_qr.png", width="12%">
+					<img src="figures/images/ADASP_Team.png", width="80%">
+					<ul>
+						<li>Advanced grant ERC "Hi-Audio" <em>(G. Richard)</em>, BPI Project "Audible" <em>(S. Essid)</em>, ANR AQUARIUS 
+							<em>(G. Peeters)</em>, ANR JCJC SAROUMANE <em>(M. Fontaine)</em></li>
+							<li> Joint Lab LISTEN with 4 industrial partners (Valéo, Orosound, BruitParif & MWM)</li>
+						<li>Currently: 21 PhD Students, 2 Post-Docs, 5 Research Engineers</li>
+					</ul>
+					<aside class="notes">
+						<ul><li>finding kind of continuous sequences of anomaly</li>
+							<li>what can be a good machine learning framework for such application ?</li>
+							<li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Current PhD Supervision</h1>
+					<h2>LISTEN Lab</h2>
+					<div class="multiCol">
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/anton.png" width="27%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Anton Emelchenkov (Valéo)</span>
+									<span style="font-size:14px;">
+										<br>Anomaly detection in locally stationnary time series
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/victor.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Victor Letzelter (Valéo)</span>
+									<span style="font-size:14px;">
+										<br>Spatio-temporal analysis of sound scenes for assisted and automated driving
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/thomas.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Thomas Serre (Orosound)</span>
+									<span style="font-size:14px;">
+										<br>Personalized speech enhancement in real-time through deep learning
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<h2>Academic PhDs </h2>
+					<div class="multiCol">
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/louis_b.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Louis Bahrman (Hi-Audio)</span>
+									<span style="font-size:14px;">
+										<br>Audio dereverberation by hybrid deep neural modeling
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/elio.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Elio Gruttadauria (Audible)</span>
+									<span style="font-size:14px;">
+										<br>Online multi-channel speaker diarization and localisation in the wild
+
+
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/louis_l.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Louis Lalay (CDSN)</span>
+									<span style="font-size:14px;">
+										<br>Joint separation and dereverberation of moving speakers
+
+
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/sicheng.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Sicheng Mao (SAROUMANE)</span>
+									<span style="font-size:14px;">
+										<br>Generative models for Speaker Diarization
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
+							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
+							<li>we do not always have a periodic data</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Current PhD Supervision</h1>
+					<h2>LISTEN Lab</h2>
+					<div class="multiCol">
+						<div class="col">
+							<figure style="display: inline-block; text-align:center; opacity:0.2;">	
+								<img src="figures/people/anton.png" width="27%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Anton Emelchenkov (Valéo)</span>
+									<span style="font-size:14px;">
+										<br>Anomaly detection in locally stationnary time series
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center; opacity:0.2;">	
+								<img src="figures/people/victor.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Victor Letzelter (Valéo)</span>
+									<span style="font-size:14px;">
+										<br>Spatio-temporal analysis of sound scenes for assisted and automated driving
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/thomas.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Thomas Serre (Orosound)</span>
+									<span style="font-size:14px;">
+										<br>Personalized speech enhancement in real-time through deep learning
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<h2>Academic PhDs </h2>
+					<div class="multiCol">
+						<div class="col">
+							<figure style="display: inline-block; text-align:center; opacity:0.2;">	
+								<img src="figures/people/louis_b.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Louis Bahrman (Hi-Audio)</span>
+									<span style="font-size:14px;">
+										<br>Audio dereverberation by hybrid deep neural modeling
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/elio.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Elio Gruttadauria (Audible)</span>
+									<span style="font-size:14px;">
+										<br>Online multi-channel speaker diarization and localisation in the wild
+
+
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center; opacity:0.2;">	
+								<img src="figures/people/louis_l.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Louis Lalay (CDSN)</span>
+									<span style="font-size:14px;">
+										<br>Joint separation and dereverberation of moving speakers
+
+
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center; opacity:0.2;">	
+								<img src="figures/people/sicheng.png" width="35%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Sicheng Mao (SAROUMANE)</span>
+									<span style="font-size:14px;">
+										<br>Generative models for Speaker Diarization
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
+							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
+							<li>we do not always have a periodic data</li>
+						</ul>
+					</aside>
+				</section>
+
+
+				<section>
+					<h1>Other Research Collaborations</h1>
+					<h2>RIKEN AIP</h2>
+					<div class="multiCol">
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/kazuyoshi.png" width="27%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Kazuyoshi Yoshii</span>
+									<span style="font-size:14px;">
+										<br>Team Leader of the "Sound Scene Understanding" Team
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/arie.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Aditya Arie Nugraha</span>
+									<span style="font-size:14px;">
+										<br>Researcher at the SSU Team (AR, XR for machine listening)
+
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+						<div class="col">
+							<figure style="display: inline-block; text-align:center;">	
+								<img src="figures/people/diego.png" width="30%" style="vertical-align: top;"/>
+								<figcaption style="text-align:center; ">
+									<span style="font-size:18px;">Diego Di Carlo</span>
+									<span style="font-size:14px;">
+										<br>Postdoc at the SSU Team (Acoustic scene understanding)
+									</span>
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+					<h2>Other soon</h2>
+					<ul>
+						<li> CIEDS project with G. Franchi (ENSTA) on Multimodal deep fake model</li>
+					</ul>
+					<aside class="notes">
+						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
+							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
+							<li>we do not always have a periodic data</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<h1>Outline</h1>
+					<h2>I - Lightweighted Personalized Speech Enhancement $\tiny\texttt{[Ser. 24]}$</h2>
+					<h2>II - Online Speaker Diarization Guided by Speech Separation $\tiny\texttt{[Gru. 24]}$</h2>
+					<div class="remarque">Questions for 5-10 min</div>
+
+					<h2 style="margin-top:2em;">III - Speech Processing Tasks in Augmented Reality $\tiny\texttt{[Sek. 22, Du 22, Nug. 22]}$</h2>
+					<div class="remarque">Questions for 5-10 min</div>
+
+					<div class="references" style="margin-top:3em;">
+						<ul>
+							<li>K. Sekiguchi et al. (2022). <em>Direction-Aware Adaptive Online Neural Speech Enhancement with an
+								Augmented Reality Headset in Real Noisy Conversational Environments</em>, IROS.</li>
+								<li>Y. Du et al. (2022). <em>Direction-Aware Joint Adaptation of Neural Speech Enhancement and
+									Recognition in Real Multiparty Conversational Environments</em>, INTERSPEECH.</li>	
+								<li>A.A. Nugraha et al. (2022). <em>DNN-free Low-Latency Adaptive Speech Enhancement Based
+									 on Frame-Online Beamforming Powered by Block-Online Fastmnmf</em>, IWAENC.</li>
+									
+							<li>E. Gruttadauria et al. (2024). <em>Online Speaker Diarization of Meetings Guided By Speech Separation</em>, ICASSP <b>(submitted)</b></li>
+							<li>T. Serre et al. (2024). <em>A lightweight dual-stage framework for personalized speech enhancement based on DeepFilterNet2</em>, ICASSP <b>(submitted)</b></li>
+
+						</ul>
+					</div>
+					<aside class="notes">
+						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
+							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
+							<li>we do not always have a periodic data</li>
+							<li>We will briefly talk about the used methodology except the proximity based on more design of data depth, distance measure and so on</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="cover" data-background="figures/background.jpg" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2 id='coverh2'>I - Lightweighted Personalized Speech Enhancement</h2>
+					</section>
+				<section>
+					<h1>Speech Enhancement</h1>
+					<figure>
+					<img src="figures/images/PSE/slide1.png" style="margin-top:7em;">
+				</figure>
+				</section>
+				<section>
+					<h1>Personalized Speech Enhancement (PSE) (1/2)</h1>
+					<figure>
+						<img src="figures/images/PSE/slide2.png"  style="margin-top:0em;">
+					</figure>
+				</section>
+
+				<section>
+					<h1>Personalized Speech Enhancement (PSE) (2/2)</h1>
+					<h2>Goals</h2>
+					<ul>
+						<li>Extract an embedding of the user’s voice</li>
+						<li>Use this embedding to extract the voice in a noisy content</li>
+					</ul>
+					<h2>Noise environment</h2>
+					<ul>
+						<li>Non vocal-noise <b>and</b> interfering voice(s)</li>
+					</ul>
+					<h2>Build a PSE model: two strategies</h2>
+					<ul>
+						<li><b>Adapt</b> an existing SE framework $\texttt{[Gir. 21, Esk. 21]}$</li>
+						<li><b>Create</b> a framework for PSE from scratch that is:
+							<br>$\quad \rightarrow$ strong but heavy $\texttt{[Ju 23]}$
+							<br>$\quad \rightarrow$ weaker but lighter
+							$$ $\texttt{[Wan. 20, Tha. 22]}$</li>
+					</ul>
+
+					<div class="references" style="margin-top:0em;">
+						<ul>
+							<li>R. Giri et al. (2021). <em>Personalized percepnet:
+								 Real-time, low-complexity target voice separation and enhancement</em>, INTERSPEECH.</li>
+								<li>S. Eskimez et al. (2022). <em>Personalized speech enhancement: New models and comprehensive evaluation</em>, ICASSP.</li>	
+								<li>Y. Ju et al. (2023). <em>TEA-PSE 3.0: Tencent-Ethereal-Audio-Lab Personalized Speech Enhancement System</em>, ICASSP.</li>
+									
+							<li>Q. Wang et al. (2020). <em>Streaming targeted voice separation for on-device speech recognition</em>, INTERSPEECH.</li>
+							<li>M. Thakker et al. (2022). <em>Fast real-time personalized speech enhancement: End-to-end enhancement network (e3net) and knowledge distillation</em>, INTERSPEECH.</li>
+
+						</ul>
+					</div>
+				</section>
+
+				<section>
+					<h1>From SE to PSE: pPercepNet $\texttt{[Gir. 21]}$</h1>
+					<div class="multiCol">
+						<div class="col">
+							<ul>
+								<li>Own speaker embedder, or existing one (ECAPA-TDNN)</li>
+								<li>Embedding before reccurent layers</li>
+							</ul>
+						</div>
+						<div class="col">
+							<figure>
+								<img src="figures/images/PSE/slide3.png"  style="margin-right:0em;">
+							</figure>
+						</div>
+					</div>
+					<div class="references" style="margin-top:1em;">
+						<ul>
+							<li>R. Giri et al. (2021). <em>Personalized percepnet:
+								 Real-time, low-complexity target voice separation and enhancement</em>, INTERSPEECH.</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h1>From "Nothing" to PSE</h1>
+					<h2>Dual Stage Models</h2>
+					<ul>
+						<li>Dual stage models: top 5 of Deep noise suppression (DNS) challenge 5</li>
+						<li>Example for TEA-PSE3:
+						<br>$\quad\rightarrow$ stage 1: coarse estimation on magnitude
+						<br>$\quad\rightarrow$ stage 2: finer estimation with complex magnitudes</li>
+					</ul>
+					<div class="remarque">Real time but heavy</div>
+					<h2>Compact PSE</h2>
+					<ul>
+						<li>Based on knowledge distillation, model compression etc.</li>
+					</ul>
+					<div class="remarque"> Real time, light but not dual stage</div>
+					<div class="affirmation">Proposed method: adapt a lightweight dual stage SE algorithm for PSE ?</div>
+
+				</section>
+				<section>
+					<h1>DeepFilterNet2 $\texttt{[Sch. 22]}$</h1>
+					<ul>
+						<li>SOTA results in SE</li>
+						<li>Only <b>2.31M</b> of parameters and <b>0.4G of MAC</b></li>
+						<li>Dual stage framework</li>
+						<img src="figures/images/PSE/slide4.png">
+					<li>1: Coarse estimation using Equivalent Rectangular Bandwidth (ERB) features</li>
+					<li>2: Finer estimation using complex features and deep filtering</li>
+					<li>$\mathcal{L} = \lambda_{\text{spec}} \mathcal{L}_{\text{spec}} + \lambda_{\text{MR}} \mathcal{L}_{\text{MR}}$
+						<br>$\quad\rightarrow \mathcal{L}_{\text{spec}}:$ loss on spectrogram 
+						<br> $\quad\rightarrow \mathcal{L}_{\text{MR}}:$ multiple resolution loss  
+
+					</li>
+					</ul>
+					<div class="references" style="margin-top:1em;">
+						<ul>
+							<li>H. Schröter et al. (2022). <em>Deepfilternet2: Towards real-time speech enhancement on embedded devices for full-band audio</em>, IWAENC.</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h1>Proposed Personalized DeepFilterNet2</h1>
+					<img src="figures/images/PSE/slide5.png">
+					<ul>
+						<li>pDeepFilterNet2: Unified Encoder</li>
+						<li>pDeepFilterNet2$_{\text{both}}$: Dual Encoder and E on CF and ERB</li>
+						<li>pDeepFilterNet2$_{\text{ERB}}$: Dual Encoder and E on ERB</li>
+						<li>pDeepFilterNet2$_{\text{DF}}$: Dual Encoder and E on CF</li>
+					</ul>
+
+				</section>
+				<section>
+					<h1>Training Data</h1>
+					<ul>
+						<li>Target Voice: Librispeech (2.4k speakers)</li>
+						<li>Noise: Freesound, Audioset (DNS5 noise data)</li>
+						<li>Interfering voice: Librispeech + <b>Mozilla Common Voice</b> (7k voices)</li>
+					</ul>
+					<h2>Dataset Statistics</h2>
+					<div class="multiCol">
+
+					<div class="col">
+					<ul>
+						<li>Total duration: 800h (and 50h for validation)</li>
+						<li>SNR: $\mathcal{N}(15,15)$ (limited at $[-5,35]$ dB)</li>
+						<li>SIR: $\mathcal{N}(10,10)$ (limited at $[-5,25]$ dB)</li>
+					</ul>
+					</div>
+					<div class="col">
+						<img src="figures/images/PSE/slide6.png">
+					</div>
+				</div>
+				</section>
+				<section>
+					<h1>Results on Synthetic Test Set</h1>
+					<center>
+					<img src="figures/images/PSE/slide7.png">
+				</center>
+					<ul>
+						<li>VCTK speech</li>
+						<li>SNR: $[-5,35]$ dB</li>
+						<li>SIR: $[-5,25]$ dB</li>
+						<li>$3600$ files of $5$s</li>
+						<li>Noise type equally distributed</li>
+					</ul>
+					<div class="remarque" style="background-color:green;">The unified encoder system seems to be better</div>
+				</section>
+				<section>
+					<h1>Audio Demonstration (1/2)</h1>
+					<div class="multiCol">
+						<div class="col">
+							<label for="Mix">
+								&nbsp&nbsp&nbsp&nbspClean Speech<br>
+								</label>
+								<audio id="Mix" style="width:85%;" controls>
+								<source
+										type="audio/mpeg"
+										src="multimedia/audio/PSE/sample 1/clean.wav"/>
+									</audio>
+							</div>
+							<div class="col">
+								<label for="Noisy">
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNoisy Mix<br>
+									</label>
+									<audio id="Noisy" style="width:85%;" controls>
+									<source
+											type="audio/mpeg"
+											src="multimedia/audio/PSE/sample 1/noisy.wav"/>
+										</audio>
+									</div>	
+									<div class="col">
+									<label for="perso">
+										pDeepFilterNet2<br>
+										</label>
+										<audio id="perso" style="width:85%;" controls>
+										<source
+												type="audio/mpeg"
+												src="multimedia/audio/PSE/sample 1/perso.wav"/>
+											</audio>
+										</div>
+										<div class="col">
+											<label for="baseline">
+												&nbspDeepFilterNet2<br>
+												</label>
+												<audio id="baseline" style="width:85%;" controls>
+												<source
+														type="audio/mpeg"
+														src="multimedia/audio/PSE/sample 1/baseline.wav"/>
+													</audio>
+												</div>
+
+					</div>
+											<center>
+												<img src="multimedia/audio/PSE/sample 1/output.png">
+
+											</center>
+				</section>
+				<section>
+					<h1>Audio Demonstration (2/2)</h1>
+					<div class="multiCol">
+						<div class="col">
+							<label for="Mix">
+								&nbsp&nbsp&nbsp&nbspClean Speech<br>
+								</label>
+								<audio id="Mix" style="width:85%;" controls>
+								<source
+										type="audio/mpeg"
+										src="multimedia/audio/PSE/sample 2/clean.wav"/>
+									</audio>
+							</div>
+							<div class="col">
+								<label for="Noisy">
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbspNoisy Mix<br>
+									</label>
+									<audio id="Noisy" style="width:85%;" controls>
+									<source
+											type="audio/mpeg"
+											src="multimedia/audio/PSE/sample 2/noisy.wav"/>
+										</audio>
+									</div>	
+									<div class="col">
+									<label for="perso">
+										pDeepFilterNet2<br>
+										</label>
+										<audio id="perso" style="width:85%;" controls>
+										<source
+												type="audio/mpeg"
+												src="multimedia/audio/PSE/sample 2/perso.wav"/>
+											</audio>
+										</div>
+										<div class="col">
+											<label for="baseline">
+												&nbspDeepFilterNet2<br>
+												</label>
+												<audio id="baseline" style="width:85%;" controls>
+												<source
+														type="audio/mpeg"
+														src="multimedia/audio/PSE/sample 2/baseline.wav"/>
+													</audio>
+												</div>
+
+					</div>
+											<center>
+												<img src="multimedia/audio/PSE/sample 2/output.png">
+
+											</center>
+				</section>
+				<section>
+					<h1>Results on Real Data</h1>
+					<center>
+						<img src="figures/images/PSE/slide9.png">
+					</center>
+					<ul>
+						<li>DNS5 Blind Test Set</li>
+						<li>Headset or Speakerphone</li>
+						<li>Metric PDNSMOS: DNN train to perform MOS</li>
+					</ul>
+					<div class="remarque">Results does not achieve the one of TEA-PSE3</div>
+				</section>
+				<section>
+					<h1>Complexity</h1>
+					<img src="figures/images/PSE/slide8.png">
+					<div class="remarque" style="background-color:green;">The complexity is highly lower compare to TEA-PSE3</div>
+				</section>
+				<section>
+					<h1>Takehome Message</h1>
+					<ul>
+						<li><span style="color:green">Personnalize DeepFilterNet2: a lightweight dualstage SE algorithm</span></li>
+						<li><span style="color:green">The computational cost of the personalization is minimized</span></li>
+						<li><span style="color:red">Don't achieve for now competitive results with the SOTA</span></li>
+					</ul>
+					<h2>Future Works</h2>
+					<ul>
+					<li>Oversuppression loss to add and VAD</li>
+					<li>Diagnosis of the results</li>
+					<li>Work on the embeddings</li>
+				</ul>
+
+				<div class="affirmation">
+					More results available at <a href="https://pdeepfilternet2.github.io/">https://pdeepfilternet2.github.io/</a>
+				</div>
+				</section>
+				<section class="cover" data-background="figures/background.jpg" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2 id='coverh2'>II - Online Speaker Diarization & Speech Separation</h2>
+					</section>
+					<section>
+						<h1>Speaker Diarization ?</h1>
+						<img src="figures/images/SD/SD.png"  width="150%" style="margin-top:3em;">
+						<p style="text-align:center; margin-top:2em;">
+					$$
+					\text{Diarization Error Rate (DER):} \frac{\text{FA} + \text{MS} + \text{SC}}{\text{Total}}
+					$$
+				</p>
+						<div class="remarque" style="margin-top:2em;">Speaker Diarization: who speak and when ? </div>
+					</section>
+					<section>
+						<h1>Cascaded System vs. EEND (1/2)</h1>
+						<h2>A Clustering Problem</h2>
+						<center><img src="figures/images/SD/slide2.png", width="100%">
+						</center>
+					</section>
+					<section>
+						<h1>Cascaded System vs. EEND (2/2)</h1>
+						<h2>Multilabel Classification Over Frames</h2>
+						<center><img src="figures/images/SD/slide3.png", width="60%">
+						</center>
+						<div class="references" style="margin-top:1em;">
+							<ul>
+								<li>Fujita et al. (2019). <em>End-to-end neural speaker diarization with self-attention</em>, INTERSPEECH.</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h1>Limitation in SD and Lines of Research</h1>
+						<h2>Limitations</h2>
+						<ul>
+							<li>Overlapped speech detection and correct assignment</li>
+							<li>Robusness (acoustic characteristics, turn-taking)</li>
+							<li>Lack of research on online models (which is the goal here):</li>
+							$\quad \rightarrow$ online inference: predictions with limited information
+							<br> $\quad \rightarrow$  hard with no enrollment speech or total number of speakers information
+						</ul>
+					</section>
+					<section>
+						<h1>Limitation in SD and Lines of Research</h1>
+						<h2>Limitations</h2>
+						<ul>
+							<li>Overlapped speech detection and correct assignment</li>
+							<li>Robusness (acoustic characteristics, turn-taking)</li>
+							<li>Lack of research on online models (which is the goal here):</li>
+							$\quad \rightarrow$ online inference: predictions with limited information
+							<br> $\quad \rightarrow$  hard with no enrollment speech or total number of speakers information
+						</ul>
+						<h2>Research direction: speech separation guided diarization (SSGD)</h2>
+						<ul>
+							<li>apply a voice activity detection (VAD) to the separated sources</li>
+							<li><span style="color:green;">better performance on overlapped speech</span></li>
+							<li><span style="color:red;">speech separation struggle on real data</span> </li>
+							<li><span style="color:red;">SSGD only for phone conversation (2 speakers max.)</span> </li>
+						</ul>
+					</section>
+					<section>
+						<h1>Speech Separation: Well-Defined for Online SSGD ? (1/2)</h1>
+						<center><img src="figures/images/SD/slide4.png", width="100%">
+						</center>
+						<ul>
+							<li>Metrics:</li>
+							$\quad \rightarrow \text{SNR: } 10\log_{10}\left(\frac{\left\|s\right\|^2}{\left\|s - \hat{s}\right\|^2}\right);\qquad
+							 \text{SI-SDR: } 10 \log _{10}\left(\frac{\left\|\frac{\hat{s}^\top s}{\|s\|^2} s\right\|^2}{\left\|\frac{\hat{s}^\top s}{\|s\|^2} s-\hat{s}\right\|^2}\right) $
+							<li>Training data:</li>
+							$\quad \rightarrow$  "almost fully" overlapped mixture
+							<br>$\quad \rightarrow$ contains as many speakers as the number of outputs
+						</ul>
+						<div class="affirmation">Objective quality for various number of sources to separate ?</div>
+						<div class="references" style="margin-top:1em;">
+							<ul>
+								<li>Luo et al. (2019). <em>Conv-TasNet: Surpassing Ideal Time-Frequency Magnitude Masking for Speech Separation</em>,  TASLP.</li>
+								<li>Le Roux et al. (2019). <em>SDR-half-baked or well done ?</em>,  ICASSP.</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h1>Speech Separation: Well-Defined for Online SSGD ? (2/2)</h1>
+						<center><img src="figures/images/SD/slide5.png", width="100%">
+						</center>
+						<ul>
+							<li>Lines: ConvTasNet-5. Mixtures with 5 to 2 speakers
+								<br>$\quad \rightarrow$ orange line: $5$ outputs and "zero" output are set to $\epsilon$ for stability
+								<br>$\quad \rightarrow$ blue line: $N_{\text{spks}}$ is known and  scores only btw. target and 
+							</li>
+							<li>Red cross: ConvTasNet with the exact number of speakers</li>
+						</ul>
+						<div class="affirmation">Delicate for SSGD then ... </div>
+
+					</section>
+					<section>
+						<h1>Proposed Approach: Separation, VAD & Stitching (1/2)</h1>
+						<center><img src="figures/images/SD/slide6.png", width="80%">
+						</center>
+						<ul>
+							<li>Local prediction on overlapping $5$-second windows</li>
+							<li>Either trained on LibriMix or AMI (headset)</li>
+							<li>VAD fine tuned either as:
+								<br>$\quad \rightarrow $ adapt only the VAD on the estimate of the SSep model
+								<br>$\quad \rightarrow $ adapt VAD and SSep in a E2E fashion
+
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Proposed Approach: Separation, VAD & Stitching (2/2)</h1>
+						<center><img src="figures/images/SD/slide7.png", width="60%">
+						</center>
+						<ul>
+							<li>Local prediction stitched together using speaker embeddings and incremental clustering $\texttt{[Cor. 21]}$</li>
+							<div class="references" style="margin-top:0em;">
+								<ul>
+									<li>Coria J. et al. (2021). <em>Overlap-aware low-latency online speaker diarization based on end-to-end local segmentation</em>,  ASRU.</li>
+							</div>
+						</section>
+					<section>
+					<h1>Experimental Setup</h1>
+					<h2>Dataset</h2>
+					<ul>
+						<li>Evaluation on AMI dataset (headset mix, one mic)</li>
+						<li>Training dataset: AMI (headset) or LibriMix "mix_both"</li>
+						<li>AMI evaluation protocol for evaluation</li>
+					</ul>
+					<h2>Architecture Setting and Training Details</h2>
+					<ul>
+						<li>SSep: either ConvTasNet $\texttt{[Luo 19]}$ or DPRNN $\texttt{[Luo 20]}$
+						<br>$\quad \rightarrow $ trained  on LibriMix "mix_both" $3$-second segments
+						<br>$\quad \rightarrow $ finetuned on AMI train set by lowering thhe learning rate
+						</li>
+						<li>Final finetuning step uning the pretrained VAD from Pyannote</li>
+					</ul>
+					<div class="references" style="margin-top:1em;">
+						<ul>
+							<li>Luo et al. (2019). <em>Conv-TasNet: Surpassing Ideal Time-Frequency Magnitude Masking for Speech Separation</em>,  TASLP.</li>
+							<li>Luo et al. (2020). <em>Dual-path RNN: efficient long sequence modeling for time-domain single-channel speech separation</em>,  ICASSP.</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h1>Ablation Study on the Training Methodology</h1>
+					<center><img src="figures/images/SD/slide8.png", width="100%">
+					</center>
+					<ul>
+						<li><span style="color:green;">Better performance for E2E optimization</span></li>
+						<li><span style="color:green;">Pretraining SSep on real data additionally boost performance</span> </li>
+						<li><span style="color:red;">Worse Missing speech score (due to poor SSep performance ?)</span> </li>
+					</ul>
+				</section>
+				<section>
+					<h1>Choice of the SSep Models</h1>
+					<center><img src="figures/images/SD/slide9.png", width="80%">
+					</center>
+					<ul>
+						<li>Left bar: minimum latency (0.5 s)</li>
+						<li>Right bar: maximum latency (5 s)</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Performance wrt. the Number of Speaker and Overlap </h1>
+					<center><img src="figures/images/SD/slide10.png", width="100%">
+					</center>
+					<ul>
+						<li><em>OVL-only scoring</em> represents the performance on overlap speech sections only</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Take-aways</h1>
+					<ul>
+						<li>SSGD can be adapted to work on real data rather than only simulated mixtures</li>
+						<li>Bad performance of SSep models can be mitigated with:
+							<br>$\quad \rightarrow$ diarization finetuning on real data <b>(local)</b>
+							<br> $\quad \rightarrow$ stitching mechanism based on speaker embeddings <b>(global) </b>
+						</li>
+						<li>SSep improves diarization performance on overlapped speech</li>
+						<li>Competitive with EEND benchmark</li>
+						<li>Improving performances especially at low latency requirements</li>
+					</ul>
+
+					<h2>Future Works</h2>
+					<ul>
+						<li>Understand the relationship between local and global prediction performance</li>
+                    </ul>
+				</section>
+				<section>
+					<center style="margin-top:12em;"><div class="remarque">Thank you ! Questions for the 1st part ?</div></center>
+				</section>
+				<section class="cover" data-background="figures/background.jpg" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2 id='coverh2'>III - Speech Processing Tasks in Augmented Reality</h2>
+					</section>
+				<section>
+					<h1>Augmented Reality (AR)</h1>
+					<img src="figures/images/XR/slide1.png">
+				</section>
+				<section>
+                    <h1>AR Smart Glasses for Perception and Cognition</h1>
+					<h2>Improving the Quality of Human Life</h2>
+					<ul>
+						<li>Compensate hearing or vision loss</li>
+						<li>Enrich the information received by the user</li>
+					</ul>
+					<div class="multiCol">
+						<div class="col">
+							<h2>Application Examples</h2>
+							<ul>
+								<li>
+									Real-time speech enhancement and recognition in multi-person conversations
+								</li>
+								<li>
+									Real-time speech recognition and translation in international social gatherings
+								</li>
+								</ul>
+						</div>
+						<div class="col">
+							<img src="figures/images/XR/slide2.png">
+						</div>
+					</div>
+				</section>
+				<section>
+				<h1>AV-SUARA (स्वर): <u>A</u>udio-<u>V</u>isual <u>S</u>cene <u>U</u>nderstanding for <u>AR</u> <u>A</u>pplications</h1>
+				<h2>Goal   </h2>
+				AR applications with smart glasses that support/improve the user's understanding of the noisy aural and visual environments. 
+				<h2>Building Blocks</h2>
+				<ul>
+					<li style="color:orange;">Audio source separation</li>
+					<li style="color:orange;">Speech Enhancement</li>
+					<li style="color:orange;">Speech recognition</li>
+					<li style="color:red;">machine translation, face detection, human pose estimation, semantic segmentation ...</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Adaptive Online Speech Enhancmeent and Recognition for Real-World Applications</h1>
+			<ul>
+				<li>Enhances/transcribes only the traget speaker specified by the user</li>
+				<li>Displays the transcription as virtual content</li>
+				<li>Microsoft Hololens2 (RGB-D camera & $5$-mic array)</li>
+			</ul>
+			<img src="figures/images/XR/slide3.png">
+			</section>
+
+			<section>
+				<h1>Demo: Speech Separation for Smart Glasses (2min)</h1>
+				<video controls>
+					<source data-src="multimedia/video/XR/ssep.mp4" type="video/mp4" />
+				</video>
+			</section>
+
+			<section>
+				<h1>Fundamentals of Microphone Array Processing</h1>
+			<h2>Time-Domain Representation: Convolution</h2>
+			<div class="multiCol">
+				<div class="col">
+			<p>
+			$
+			x_{nm}(t) = \sum_{\tau \in \mathbb{R}} a_{nm}(\tau)s_n(t-\tau) \\ 
+			$
+			</p>
+			<p>	$n: \text{source index} \quad m: \text{mic. index} \\
+			a_{nm}: \text{impulse response from source } n \\  \text{ to microphone } m$
+		
+		</p>
+		</div>
+		<div class="col">
+			<img src="figures/images/XR/slide4.png", style="margin-top:-1.3em;">
+		</div>
+	</div>
+
+			<h2>Frequency-Domain Representation: Element Product</h2>
+			$
+			x_{nftm} = a_{nfm}s_{nft} 
+			$
+			
+			$\qquad f: \text{frequency bin} \quad t: \text{time frame index}$
+		</p>
+		$\bold{x}_{nft} = \bold{a}_{nf}s_{nft} \qquad\quad~ \bold{a}_{nf}: \text{ steering vector of source } n \text{ at frequency }f$	
+		</section>
+		<section>
+			<h1>Non-Blind Source Separation: Beamforming</h1>
+			Separation with a linear filter $y_{nft} = \bold{w}_{nf}^{\mathsf{H}}\bold{x}_{ft}$
+			<h2>Delay-and-Sum (DS) Beamforming</h2>
+			<div class="multiCol">
+				<div class="col">
+					<ul>
+						<li><b>Shift</b> observed signal: observed signal and target direction in phase</li>
+						<li><b>Sum</b> the signals $(\bold{w}_{nf}^{\text{BF}} = \bold{a}_{nf})$</li>
+					</ul>
+				</div>
+				<div class="col">
+					<img src="figures/images/XR/slide5.png">
+				</div>
+			</div>
+			<h2>Minimum Variance Distortionless Response (MVDR) Beamforming</h2>
+			<ul>
+				<li>Minimize the noise power while keeping the target signal distortionless:
+					<center style="margin-top:0.5em;">
+						$$
+						\bold{w}_{nf}^{\text{MVDR}} = \underset{\bold{w}_{nf}}{\text{argmin }}\bold{w}_{nf}^{\mathsf{H}}\bold{R}_f\bold{w}_{nf} \quad \text{s.t. } \bold{a}_{nf}^{\mathsf{H}}\bold{w}_{nf} = 1
+						$$
+					</center><br>
+				</li>
+				<li>
+					<div class="multiCol" style="margin-top:-3em;">
+						<div class="col">
+						$$
+						\quad \bold{w}_{nf}^{\text{MVDR}} = \frac{\bold{R}_f^{-1}\bold{a}_{nf}}{\bold{a}_{nf}^{\mathsf{H}}\bold{R}_f^{-1}\bold{a}_{nf}}
+						$$
+						</div>
+						<div class="col">
+							$$
+							\rightarrow \bold{a}_{nf}\in \mathbb{C}^{M}: \text{steering vector of speech}$$ 
+							$$\rightarrow  \bold{R}_{f}\in \mathbb{C}^{M \times M}: \text{SCM of the noise} 
+							$$
+						</div>
+					</div>
+				</li>
+
+			</ul>
+		</section>
+		<section>
+			<h1>Blind Source Separation: FastMNMF $\tiny\texttt{[Sek. 20, Fon. 22]}$</h1>
+			<ul>
+				<li>Maximum likelihood of a unified stochastic model:
+
+					<br>$\quad \rightarrow$ Source model: NMF for power spectral density (PSD)
+					<br>$\quad \rightarrow$ Spatial model: Joint diagonalization for spatial covariance matrices (SCMs)
+					
+				</li>
+				<img src="figures/images/XR/slide6.png">
+			</ul>
+			<div class="references" style="margin-top:1em;">
+				<ul>
+					<li>K. Sekiguchi et al. (2020). <em>Fast Multichannel Nonnegative Matrix Factorization With Directivity-Aware Jointly-Diagonalizable Spatial Covariance Matrices for Blind Source Separation</em>, TASLP.</li>
+					<li>M. Fontaine et al. (2022). <em>Generalized Fast Multichannel Nonnegative Matrix Factorization Based on Gaussian Scale Mixtures for Blind Source Separation</em>, TASLP.</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<h1>FastMNMF + Beamforming $\tiny \texttt{[Nug. 22]}$</h1>
+			<ul>
+				<li><b>Front end:</b> MVDR beamforming with short windows
+				<br>$ \quad\rightarrow $ <b>Frame</b> online (small latency); requires partial info. of speech and noise
+				</li>
+				<li>
+					<b>Back end:</b> Blind speech enhancement using long windows
+				<br>$ \quad\rightarrow $ <b>Block</b> online (large latency); stable perf. independent of the environment
+				</li>
+			</ul>
+			<img src="figures/images/XR/slide7.png">
+			<div class="references" style="margin-top:1em;">
+				<ul>
+				<li>A.A. Nugraha et al. (2022). <em>DNN-free Low-Latency Adaptive Speech Enhancement Based
+					 on Frame-Online Beamforming Powered by Block-Online Fastmnmf</em>, IWAENC.</li>
+				</ul>
+		</div>
+		
+					</section>
+		<section>
+			<h1>FastMNMF + Neural Beamforming $\tiny \texttt{[Sek. 22]}$</h1>
+			<ul>
+				<li><b>Front end:</b> <span style="color:red;"> DNN-based mask estimation </span> + MVDR beamforming
+				<br>$ \quad\rightarrow $  <span style="color:red;"> Online adaptation based on a teacher-student learning </span>
+				</li>
+				<li>
+					<b>Back end:</b> Blind speech enhancement using long windows
+				<br>$ \quad\rightarrow $ <b>Block</b> online (large latency); stable perf. independent of the environment
+				</li>
+			</ul>
+			<img src="figures/images/XR/slide8.png" style="margin-top:0.5em;">
+			<div class="references" style="margin-top:1em;">
+				<ul>
+			<li>K. Sekiguchi et al. (2022). <em>Direction-Aware Adaptive Online Neural Speech Enhancement with an
+				Augmented Reality Headset in Real Noisy Conversational Environments</em>, IROS.
+			</li></ul>
+
+			</div>
+			
+		</section>
+		<section>
+			<h1>Direction-Aware Speech Enhancement</h1>
+			<b>Neural beamformer</b> $\texttt{[Hey. 17]}$ + <b>target direction embedding</b> $\texttt{[Nak. 20]}$
+			<ul>
+				<li>MVDR beamforming $\texttt{[Sou. 10]}$
+					<div class="multiCol">
+						<div class="col">
+							$\quad \rightarrow$ enhanced speech: $y_{ft} = \bold{w}_f^{\mathsf{H}}\bold{x}_{ft}$
+							<br> $\quad \rightarrow$ sep. filter: 
+							$\bold{w}_f = \frac{\bold{R}_{f}^{-1}\bold{V}_f}{\mathrm{tr}
+							\left(\bold{R}_{f}^{-1}\bold{V}_f\right)}\bold{u}$
+						</div>
+
+						<div class="col">
+							$\bold{R}_f, \bold{V}_f: \text{noise/speech SCMs } \\
+					\bold{u} : \text{one hot vector}$
+						</div>
+					</div>
+
+				</li>
+				<li>Estimate speech mask using DNN and estimate $\bold{R}_f, \bold{V}_f$
+					<br>$\quad \rightarrow$ emphasize only a specific speaker $\implies$ Direction embedding
+
+				</li>
+			</ul>
+			<img src="figures/images/XR/slide9.png" width="85%" style="margin-top:0.1em;">
+			<div class="references" style="margin-top:0.1em;">
+				<ul>
+					<li>Y. Heymann et al. (2017). <em>A generic neural acoustic beamforming architecture for robust multi-channel speech processing</em>, Elsevier.
+					</li>
+			<li>Y. Nakagome et al. (2020). <em>Deep Speech Extraction with Time-Varying Spatial Filtering Guided By Desired Direction Attractor</em>, ICASSP.
+			</li>
+			<li>M. Souden et al. (2010). <em>A Study of the LCMV and MVDR Noise Reduction Filters</em>, ICASSP.
+			</li>
+		</ul>
+
+			</div>
+		</section>
+		<section>
+			<h1>Online Adaptation of Neural Beamforming</h1>
+			<h2> Online Dereverberation</h2>
+			<ul>
+				<li>Weighted prediction error (WPE)</li>
+			</ul>
+			<h2>Online Adaptive Speech Enhancement</h2>
+			<ul>
+				<li>Neural MVDR beamforming (supervised front-end)
+<br>$\quad \rightarrow$ <span style="color:red;">DNN-based estimator is fine-tuned at regular intervals</span>
+
+				</li>
+	<li>FastMNMF (unsupervised back-end)
+		<br>$\quad \rightarrow$ generate paired data (of mixture and separated speech) for online adaptation
+	</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Experimental Settings</h1>
+			<b>Task</b>: ASR of a target speaker given a mixture (interfering speaker + diffuse noise)
+			<div class="multiCol">
+				<div class="col">
+					<b>Training data:</b>
+					<ul>
+						<li>Mixtures: simulated two speech images and diffuse noise</li>
+						<li>Data amount: $15$ hours</li>
+					</ul>
+					<b>Fine-tuning and test data:</b>
+					<ul>
+						<li>Mixtures: real two speech images and diffuse noise</li>
+						<li>Data amount for fine-tuning: $0-48$ minutes</li>
+						<li>Data amount for evaluation: $18$ minutes</li>
+					</ul>
+				</div>
+				<div class="col">
+					<img src="figures/images/XR/slide10.png" width="80%">
+					<img src="figures/images/XR/slide11.png" width="80%">
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<h1>Experimental Results</h1>
+			<b>Improved performance: WER decreases as adaptation progresses</b>
+			<br>Mask estimator (DNN) is updated every $3$ minutes (each update is intensive)
+			<img src="figures/images/XR/slide12.png" width="90%">
+		</section>
+		<section>
+			<h1>Demo: Adaptive Speech Enhancement (1min)</h1>
+			<video controls>
+				<source data-src="multimedia/video/XR/spen.mp4" type="video/mp4" />
+			</video>
+		</section>
+		<section>
+			<h1>Conclusion</h1>
+			<b>AR smart glasses for supporting and improving human communication</b>
+			<ul>
+				<li>Dual-process adaptive online speech enhancement and recognition for real-world
+					environments</li>
+					<li>Fast, non-blind separation as front end (MVDR beamforming)</li>
+					<li>Slow, blind separation as back end (FastMNMF)</li>
+				<li>Transcription of target speaker’s voice in real-world multiparty conversations</li>
+			</ul>
+		</section>
+		<section>
+			<center style="margin-top:12em;">
+				<div class="remarque">Thank you for your attention! Feel free to ask questions. </div>
+				<br><img src="figures/images/ADASP_qr.png" width="15%">
+         &nbsp&nbsp <img src="figures/images/QR_presentation.png" width="13%">
+
+			</center>
+			
+		</section>
+				</div>
+
+
+
+<div class='footer'>
+	<img src="css/theme/img/logo-Telecom.svg" alt="Logo"/>
+	<div id="middlebox">Speech Related Topics</div>
+	<ul>
+	</ul>
+</div>
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: false,
+				slideNumber: true,
+				minScale: 0.1,
+				maxScale: 5,
+				transition: 'none', //
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math-katex/math-katex.js', async: true },
+					{ src: 'plugin/reveald3/reveald3.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+			Reveal.configure({
+				keyboard: { 38:'next',
+				40:'prev',
+				66:'slide'
+
+  }
+			})
+		</script>
+
+	</body>
+
+</html>
