@@ -467,13 +467,14 @@
 					<ul>
 						<li>SOTA results in SE</li>
 						<li>Only <b>2.31M</b> of parameters and <b>0.4G of MAC</b></li>
-						<li>Dual stage framework</li>
+						<li>Dual stage framework for $X(k,f) = S(k,f)H(k,f) + N(k,f)$</li>
 						<img src="figures/images/PSE/slide4.png">
 					<li>1: Coarse estimation using Equivalent Rectangular Bandwidth (ERB) features</li>
 					<li>2: Finer estimation using complex features and deep filtering</li>
 					<li>$\mathcal{L} = \lambda_{\text{spec}} \mathcal{L}_{\text{spec}} + \lambda_{\text{MR}} \mathcal{L}_{\text{MR}}$
-						<br>$\quad\rightarrow \mathcal{L}_{\text{spec}}:$ loss on spectrogram 
-						<br> $\quad\rightarrow \mathcal{L}_{\text{MR}}:$ multiple resolution loss  
+						<br>$\quad\rightarrow \mathcal{L}_{\text{spec}} \triangleq  \sum_{k,f} | |Y|^c-|S|^c|^2 + | |Y|^ce^{i\phi_Y}-|S|^c e^{i\phi_S}|^2: \\$ loss on spectrogram with $c=0.3$
+						<br> $\quad\rightarrow \mathcal{L}_{\text{MR}} \triangleq  \sum_{k,f,i} | |Y^\prime_i|^c-|S^\prime_i|^c|^2 \times | |Y^\prime_i|^ce^{i\phi{Y^\prime_i}}-|S^\prime_i|^c e^{i\phi S^\prime_i}|^2: \\$ multiple resolution loss 
+						$(Y \rightarrow y_t \rightarrow STFT_i(y_t) \triangleq Y^\prime_i $) 
 
 					</li>
 					</ul>
@@ -496,11 +497,16 @@
 						<li>pDeepFilterNet2$_{\text{both}}$: Dual Encoder and E on CF and ERB</li>
 						<li>pDeepFilterNet2$_{\text{ERB}}$: Dual Encoder and E on ERB</li>
 						<li>pDeepFilterNet2$_{\text{DF}}$: Dual Encoder and E on CF</li>
+						<li>A new loss is added: $\mathcal{L}_{\text{OS}}=\sum_{k,f}\left|h(|Y(k,f)|^c - |S(k,f)|^c)\right|^2$
+							where $h(x) = x\mathbf{1}_{\mathbb{R}^+}(x)$
+						</li>
 					</ul>
 					<aside class="notes">
 						<ul>
 							<li>Either concatenation in the Complex and ERB encoders</li>
 							<li>or in a unified way</li>
+							<li>The asymmetric loss penalizes the T-F bins where
+								the target speaker’s voice is remove</li>
 						</ul>
 					</aside>
 				</section>
