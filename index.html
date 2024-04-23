@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>LST Days - Seminar</title>
+		<title>SAP Seminar</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
@@ -677,7 +677,7 @@
 					</aside>
 					</section>
 				
-										<section>
+					<section>
 					<h1>Results on Real Data</h1>
 					<center>
 						<img src="figures/images/PSE/slide9.png">
@@ -809,7 +809,7 @@
 						<ul>
 							<li>Lines: ConvTasNet-5. Mixtures with 5 to 2 speakers
 								<br>$\quad \rightarrow$ orange line: $5$ outputs and "zero" output are set to $\epsilon$ for stability
-								<br>$\quad \rightarrow$ blue line: $N_{\text{spks}}$ is known and  scores only btw. target and 
+								<br>$\quad \rightarrow$ blue line: $N_{\text{spks}}$ is known and scores only wrt. the targets. 
 							</li>
 							<li>Red cross: ConvTasNet with the exact number of speakers</li>
 						</ul>
@@ -840,6 +840,17 @@
 								<ul>
 									<li>Coria J. et al. (2021). <em>Overlap-aware low-latency online speaker diarization based on end-to-end local segmentation</em>,  ASRU.</li>
 							</div>
+						<aside class="notes">
+							<ol>
+								<li>start from the current window (top, outline red),</li>
+								<li>speaker embeddings are estimated</li>
+								<li>the predictions of the active speakers are aggregated with a delay (bottom) if the latency is above
+									the minimum of 500ms,</li>
+								<li>the activities are binarized using $\tau_{\mathrm{active}}$ to get speaker segment</li>
+								<li> incremental clustering is performed on the speaker embeddings to find the best match between the speaker
+									segments and the existing centroid</li>
+							</ol>
+						</aside>
 						</section>
 					<section>
 					<h1>Experimental Setup</h1>
