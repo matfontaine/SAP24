@@ -46,9 +46,9 @@
 					<p>
 					<img src="css/theme/img/logo-Telecom.svg" id="telecom" class="logo" alt="">
 					<aside class="notes">
-						<ul><li>Talk about time anomaly detection using GAN</li>
-									<li>The main goal is to provide an unsupervised TAD that works for various dataset</li>
-									<li>Fitting an implicit distribution may be a wise choice ? Let see ...</li>
+						<ul><li>Thank you (Anthony for the invit to talk about work)</li>
+									<li>I decided to talk about an overview of recent works at Télécom and with overseas collegues</li>
+									<li>If you want to follow the slides on your computer, you can scan the QR code over there.</li>
 						</ul>
 					</aside>
 				</section>
@@ -61,6 +61,7 @@
 						<li>Currently: Assistant Professor at Télécom Paris in ADASP Group</li>
 						<li>Guest Researcher at RIKEN AIP @ Kyoto University</li>
 					</ul>
+					
 				</section>
 
 				<section>
@@ -174,9 +175,9 @@
 						</div>
 					</div>
 					<aside class="notes">
-						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
-							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
-							<li>we do not always have a periodic data</li>
+						<ul><li>I currently supervise 3 PhD CIFRE and 4 Academic PhDs</li>
+							<li>(Present briefly them in 30 seconds)</li>
+							<li>I will not have time to present all their work so let me focus on two of them</li>
 						</ul>
 					</aside>
 				</section>
@@ -274,9 +275,8 @@
 						</div>
 					</div>
 					<aside class="notes">
-						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
-							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
-							<li>we do not always have a periodic data</li>
+						<ul><li>Thomas who started recently tried to submit a paper in ICASSP and I would like to talk about his work</li>
+							<li>Elio also on only speaker diarization</li>
 						</ul>
 					</aside>
 				</section>
@@ -326,9 +326,9 @@
 						<li> CIEDS project with G. Franchi (ENSTA) on Multimodal deep fake model</li>
 					</ul>
 					<aside class="notes">
-						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
-							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
-							<li>we do not always have a periodic data</li>
+						<ul><li>I also keep strong connections with my colleagues from Japan</li>
+							<li>The team may stopped in 2025 and it is a goal-oriented team focusing on "AR and audio applications for sound scene understanding"</li>
+							<li>I will recently also work on multimodal diffusion for deep fake model with colleagues from ENSTA and Polytechnique</li>
 						</ul>
 					</aside>
 				</section>
@@ -356,10 +356,10 @@
 						</ul>
 					</div>
 					<aside class="notes">
-						<ul><li>indeed sometimes  anomalies are known but sometimes not ! (so not supervised)</li>
-							<li>sometimes the dataset includes anomalies (it is not the case in this study)</li>
-							<li>we do not always have a periodic data</li>
-							<li>We will briefly talk about the used methodology except the proximity based on more design of data depth, distance measure and so on</li>
+						<ul><li>Let me first talk about an overview of work of Thomas on Personalized Speech enhancement</li>
+						<li>Then, on online speaker diarization in meeting conversations strongly inspired by recent paper of Coria and Hervé Bredin </li>
+						<li>If you allow me, I would like to take 5-10 minutes if you have questions</li>
+						<li>Then, I will talk about few works we achieved at RIKEN on AR,XR and few speech processing task plus introducing you the goal of the project entitiled AV-SUARA</li>
 						</ul>
 					</aside>
 				</section>
@@ -372,12 +372,26 @@
 					<figure>
 					<img src="figures/images/PSE/slide1.png" style="margin-top:7em;">
 				</figure>
+				<aside class="notes">
+					<ul>
+						<li>the goal of speech enhancement is to improve the perceptual quality of a given speech corrupted by non-desired noise</li>
+					</ul>
+				</aside>
 				</section>
 				<section>
 					<h1>Personalized Speech Enhancement (PSE) (1/2)</h1>
 					<figure>
 						<img src="figures/images/PSE/slide2.png"  style="margin-top:0em;">
 					</figure>
+					<aside class="notes">
+						<ul>
+							<li>The personnalized SE is close but we have a specific target speaker in a noisy environment</li>
+							<li>the noise is splitted into non speech noise (or babble max) and interfering voice</li>
+							<li>we assume that except of the target voice exists</li>
+							<li>globally those data is used and embedded (using e.g. i-vector, x-vectors, ECAPA-TDNN)</li>
+							<li>And feed into the algorithm</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section>
@@ -412,6 +426,12 @@
 
 						</ul>
 					</div>
+					<aside class="notes">
+						<ul>
+							<li>There is two main strategies</li>
+							<li>Let met first talk about an example of SE adaptation framework to PSE</li>
+						</ul>
+					</aside>
 				</section>
 
 				<section>
@@ -435,6 +455,12 @@
 								 Real-time, low-complexity target voice separation and enhancement</em>, INTERSPEECH.</li>
 						</ul>
 					</div>
+					<aside class="notes">
+						<ul>
+							<li>In this example they either take there own speaker embedder or existing one</li>
+							<li>One part that make sense is that the embedding is concatenated before the recurrent layers</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>From "Nothing" to PSE</h1>
@@ -452,7 +478,13 @@
 					</ul>
 					<div class="remarque"> Real time, light but not dual stage</div>
 					<div class="affirmation">Proposed method: adapt a lightweight dual stage SE algorithm for PSE ?</div>
-
+					<aside class="notes">
+						<ul>
+							<li>There is a trade off between heavy/light models and dual stage or not</li>
+							<li>dual stage strategy can be interesting due to its two explainable step</li>
+							<li>Our goal is to adapt a lightweight dual stage SE algorithm</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>DeepFilterNet2 $\texttt{[Sch. 22]}$</h1>
@@ -474,6 +506,11 @@
 							<li>H. Schröter et al. (2022). <em>Deepfilternet2: Towards real-time speech enhancement on embedded devices for full-band audio</em>, IWAENC.</li>
 						</ul>
 					</div>
+					<aside class="notes">
+						<ul>
+							<li>ERB used in psychoacoustics for approximation to bandwidth filters of human hearing</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>Proposed Personalized DeepFilterNet2</h1>
@@ -484,7 +521,12 @@
 						<li>pDeepFilterNet2$_{\text{ERB}}$: Dual Encoder and E on ERB</li>
 						<li>pDeepFilterNet2$_{\text{DF}}$: Dual Encoder and E on CF</li>
 					</ul>
-
+					<aside class="notes">
+						<ul>
+							<li>Either concatenation in the Complex and ERB encoders</li>
+							<li>or in a unified way</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>Training Data</h1>
@@ -507,6 +549,14 @@
 						<img src="figures/images/PSE/slide6.png">
 					</div>
 				</div>
+				<aside class="notes">
+					<ul>
+						<li>speaker identity of librispeech is known</li>
+						<li>but more interferent unknown speaker for training</li>
+						<li>SNR: signal to noise ratio (the average power of the noise component)</li>
+						<li>SIR: signal to interference ratio (the average power of the interfering speaker)</li>
+					</ul>
+				</aside>
 				</section>
 				<section>
 					<h1>Results on Synthetic Test Set</h1>
@@ -521,7 +571,15 @@
 						<li>Noise type equally distributed</li>
 					</ul>
 					<div class="remarque" style="background-color:green;">The unified encoder system seems to be better</div>
+					<aside class="notes">
+						<ul>
+							<li>VCTK 110 english speakers (each read 400 sentences)</li>
+							<li>Higher is better for all scores</li>
+							<li>Seems that the embedder given to the ERB path seems to provide better results</li>
+						</ul>
+					</aside>
 				</section>
+
 				<section>
 					<h1>Audio Demonstration (1/2)</h1>
 					<div class="multiCol">
@@ -571,6 +629,12 @@
 												<img src="multimedia/audio/PSE/sample 1/output.png">
 
 											</center>
+				
+					<aside class="notes">
+						<ul>
+							<li>Here is an example where the performance of pDeepfilterNet2 is noticeable</li>
+						</ul>
+					</aside>						
 				</section>
 				<section>
 					<h1>Audio Demonstration (2/2)</h1>
@@ -621,8 +685,17 @@
 												<img src="multimedia/audio/PSE/sample 2/output.png">
 
 											</center>
-				</section>
-				<section>
+				
+					<aside class="notes">
+						<ul>
+							<li>here, the speaker identity is the wrong one</li>
+							<li>More experiments should be investigated to understand those behavior</li>
+							<li>We noticed that when the speaker are very close one to each other, that problem happens</li>
+						</ul>
+					</aside>
+					</section>
+				
+										<section>
 					<h1>Results on Real Data</h1>
 					<center>
 						<img src="figures/images/PSE/slide9.png">
@@ -633,11 +706,22 @@
 						<li>Metric PDNSMOS: DNN train to perform MOS</li>
 					</ul>
 					<div class="remarque">Results does not achieve the one of TEA-PSE3</div>
+					<aside class="notes">
+						<ul>
+							<li>The performance are still very far from the winner of DNS challenge</li>
+						</ul>
+					</aside>
 				</section>
 				<section>
 					<h1>Complexity</h1>
 					<img src="figures/images/PSE/slide8.png">
 					<div class="remarque" style="background-color:green;">The complexity is highly lower compare to TEA-PSE3</div>
+				
+				<aside class="notes">
+					<ul>
+						<li>Note however how small is our proposed technique compare to TEA-PSE 3.0</li>
+					</ul>
+				</aside>
 				</section>
 				<section>
 					<h1>Takehome Message</h1>
